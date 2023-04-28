@@ -2,7 +2,7 @@ from bale import Bot, CallbackQuery, Message, Components, InlineKeyboard, EventT
 import requests
 import json
 
-bot = Bot(token="1250946986:N7gQYReP6qrlqqflT2mygS6WL3lVS8UuJ6kVotBv")
+bot = Bot(token="your bot token bale")
 
 TextWelcome = "سلام خوش آمدی به ربات بله پدیا \n " \
               "اینجا میتونی مقاله های ویکی پدیا را به صورت شانسی دریافت کنی\n "
