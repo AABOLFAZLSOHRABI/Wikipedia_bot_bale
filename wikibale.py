@@ -2,12 +2,13 @@ from bale import Bot, CallbackQuery, Message, Components, InlineKeyboard, EventT
 import requests
 import json
 
+# Enter your token
 bot = Bot(token="your bot token bale")
 
 TextWelcome = "سلام خوش آمدی به ربات بله پدیا \n " \
               "اینجا میتونی مقاله های ویکی پدیا را به صورت شانسی دریافت کنی\n "
 
-
+# Function for /start command
 @bot.listen(EventType.MESSAGE)
 async def when_receive_message(message: Message):
     if message.content == "/start":
@@ -19,7 +20,7 @@ async def when_receive_message(message: Message):
             ]])
         )
 
-
+# Glass button for topics
 @bot.listen(EventType.CALLBACK)
 async def rond_two(callback: CallbackQuery):
     if callback.data == "STAR":
@@ -35,13 +36,13 @@ async def rond_two(callback: CallbackQuery):
             ]])
         )
 
-
+#Connecting to the wikipedia site by api
 @bot.listen(EventType.CALLBACK)
 async def select(call: CallbackQuery):
     if call.data == "general":
         category = 'general'
         api_url = 'https://api.api-ninjas.com/v1/hobbies?category={}'.format(category)
-        response = requests.get(api_url, headers={'X-Api-Key': '/HNShFyE8nwxLWhB5M8oSw==wPoSUezPUpf4wscF'})
+        response = requests.get(api_url, headers={'X-Api-Key': 'enter_your_token'}) # enter token api . site token = https://api-ninjas.com/api
         if response.status_code == requests.codes.ok:
             # print(response.text)
             response_dict = json.loads(response.text)
@@ -79,7 +80,6 @@ async def select(call: CallbackQuery):
         api_url = 'https://api.api-ninjas.com/v1/hobbies?category={}'.format(category)
         response = requests.get(api_url, headers={'X-Api-Key': '/HNShFyE8nwxLWhB5M8oSw==wPoSUezPUpf4wscF'})
         if response.status_code == requests.codes.ok:
-            # print(response.text)
             response_dict = json.loads(response.text)
             url = response_dict["link"]
             await call.message.reply(
